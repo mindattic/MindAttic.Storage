@@ -1,4 +1,4 @@
-﻿namespace MindAttic.Storage;
+namespace MindAttic.Storage;
 
 /// <summary>
 /// Optional companion to <see cref="IMediaStore"/>: mints a URL the browser can fetch directly.

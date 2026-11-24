@@ -1,4 +1,4 @@
-﻿namespace MindAttic.Storage;
+namespace MindAttic.Storage;
 
 /// <summary>
 /// A write-only sink that keeps small payloads in memory and spills to an overflow stream the moment

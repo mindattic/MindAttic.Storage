@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using Microsoft.Extensions.Options;
 using MindAttic.Storage;
 using NUnit.Framework;

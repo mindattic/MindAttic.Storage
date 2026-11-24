@@ -1,4 +1,4 @@
-﻿<Solution>
+<Solution>
   <Folder Name="/src/">
     <Project Path="src/MindAttic.Storage.Azure/MindAttic.Storage.Azure.csproj" />
     <Project Path="src/MindAttic.Storage.Tests/MindAttic.Storage.Tests.csproj" />

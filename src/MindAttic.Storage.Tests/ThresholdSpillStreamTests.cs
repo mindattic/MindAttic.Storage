@@ -1,4 +1,4 @@
-﻿using MindAttic.Storage;
+using MindAttic.Storage;
 using NUnit.Framework;
 
 namespace MindAttic.Storage.Tests;

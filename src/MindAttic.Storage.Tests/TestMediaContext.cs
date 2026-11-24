@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using MindAttic.Storage;
 
 namespace MindAttic.Storage.Tests;

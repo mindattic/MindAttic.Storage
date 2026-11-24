@@ -1,4 +1,4 @@
-﻿namespace MindAttic.Storage.Azure;
+namespace MindAttic.Storage.Azure;
 
 public static class AzureBlobNaming
 {

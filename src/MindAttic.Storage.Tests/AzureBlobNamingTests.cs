@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using MindAttic.Storage;
 using MindAttic.Storage.Azure;
 using NUnit.Framework;

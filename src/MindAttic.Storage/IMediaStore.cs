@@ -1,4 +1,4 @@
-﻿namespace MindAttic.Storage;
+namespace MindAttic.Storage;
 
 public interface IMediaStore
 {
