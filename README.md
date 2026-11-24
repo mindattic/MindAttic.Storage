@@ -153,7 +153,7 @@ This repo was MindAttic.Media until it was renamed in 2026-11. The packages were
 | `MindAttic.Media` 2.0.0 | `MindAttic.Storage` 1.0.0 |
 | `MindAttic.Media.Azure` 2.0.0 | `MindAttic.Storage.Azure` 1.0.0 |
 
-Source: [github.com/mindattic/MindAttic.Storage](https://github.com/mindattic/MindAttic.Storage).
+Source: [github.com/mindattic/MindAttic.Storage](https://github.com/mindattic/MindAttic.Storage). [docs/MIGRATION.md](docs/MIGRATION.md) has the full mapping, the steps to move a consumer, and the consumers already moved.
 
 ## Documentation
 
