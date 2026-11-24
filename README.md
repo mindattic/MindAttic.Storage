@@ -50,6 +50,16 @@ The packages are published to a local feed (`C:\LocalNuGet`, see `nuget.config`)
 <PackageReference Include="MindAttic.Storage.Azure" Version="1.0.0" />
 ```
 
+MindAttic apps keep the package reference and, in Debug builds, add a project reference to a sibling checkout of this repo, so local changes are picked up without packing:
+
+```xml
+<PackageReference Include="MindAttic.Storage" Version="1.0.0" />
+<ProjectReference Include="..\MindAttic.Storage\src\MindAttic.Storage\MindAttic.Storage.csproj"
+                  Condition="'$(Configuration)' == 'Debug' AND Exists('..\MindAttic.Storage\src\MindAttic.Storage\MindAttic.Storage.csproj')" />
+```
+
+Adjust the `..\` depth to where your project sits relative to the `MindAttic.Storage` folder.
+
 Add the catalog table to your DbContext:
 
 ```csharp
@@ -133,6 +143,17 @@ npx azurite --silent --location ./azurite --blobHost 127.0.0.1 --blobPort 10000
 - The column types in `MediaItemTypeConfiguration` are SQL Server specific.
 - Deletes are soft only. Reclaiming storage from deleted items is a separate operation the library does not provide.
 - The Azure store always writes to blob storage; the inline threshold applies to the local disk store.
+
+## Formerly MindAttic.Media
+
+This repo was MindAttic.Media until it was renamed in 2026-11. The packages were renamed and their versions reset; the API is the same, including the public type names (`IMediaStore`, `MediaItem`, `AddMedia`, `AddMediaAzure`, `MapMediaEndpoints`) and the `/_media` endpoint. Only the namespaces change from `MindAttic.Media` to `MindAttic.Storage`.
+
+| Old package | New package |
+|---|---|
+| `MindAttic.Media` 2.0.0 | `MindAttic.Storage` 1.0.0 |
+| `MindAttic.Media.Azure` 2.0.0 | `MindAttic.Storage.Azure` 1.0.0 |
+
+Source: [github.com/mindattic/MindAttic.Storage](https://github.com/mindattic/MindAttic.Storage).
 
 ## Documentation
 
