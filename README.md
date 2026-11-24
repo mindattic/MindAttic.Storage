@@ -1,12 +1,12 @@
-# MindAttic.Media
+# MindAttic.Storage
 
 Drop-in media storage for ASP.NET Core apps: one upload API, a catalog row per file, and a media endpoint that serves from local disk or hands large files straight to Azure Blob Storage.
 
-![.NET 10](https://img.shields.io/badge/.NET-10-512BD4) ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-library-512BD4) ![EF Core SQL Server](https://img.shields.io/badge/EF%20Core-SQL%20Server-CC2927) ![Azure Blob Storage](https://img.shields.io/badge/Azure-Blob%20Storage-0078D4) ![Version 2.0.0](https://img.shields.io/badge/version-2.0.0-2f7a4f)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4) ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-library-512BD4) ![EF Core SQL Server](https://img.shields.io/badge/EF%20Core-SQL%20Server-CC2927) ![Azure Blob Storage](https://img.shields.io/badge/Azure-Blob%20Storage-0078D4) ![Version 1.0.0](https://img.shields.io/badge/version-1.0.0-2f7a4f)
 
 ```text
- your app                      MindAttic.Media                         storage
- ─────────                     ───────────────                         ───────
+ your app                      MindAttic.Storage                       storage
+ ─────────                     ─────────────────                       ───────
  UploadAsync(stream, ...) ──>  IMediaStore ──> hash (SHA-256) in flight
                                   │
                                   ├─ LocalDiskMediaStore   <= 2 MB ──> inline bytes in the MediaItem row
@@ -19,7 +19,7 @@ Drop-in media storage for ASP.NET Core apps: one upload API, a catalog row per f
                        otherwise       ──> stream through the app (ETag, Last-Modified, Range)
 ```
 
-Two NuGet packages: `MindAttic.Media` (the abstraction, the EF Core model, the local-disk store and the endpoint) and `MindAttic.Media.Azure` (the Azure Blob backend and URL signer).
+Two NuGet packages: `MindAttic.Storage` (the abstraction, the EF Core model, the local-disk store and the endpoint) and `MindAttic.Storage.Azure` (the Azure Blob backend and URL signer).
 
 ## Why
 
@@ -46,8 +46,8 @@ Two NuGet packages: `MindAttic.Media` (the abstraction, the EF Core model, the l
 The packages are published to a local feed (`C:\LocalNuGet`, see `nuget.config`). Reference them from your web project:
 
 ```xml
-<PackageReference Include="MindAttic.Media" Version="2.0.0" />
-<PackageReference Include="MindAttic.Media.Azure" Version="2.0.0" />
+<PackageReference Include="MindAttic.Storage" Version="1.0.0" />
+<PackageReference Include="MindAttic.Storage.Azure" Version="1.0.0" />
 ```
 
 Add the catalog table to your DbContext:
@@ -110,7 +110,7 @@ Add an EF Core migration in your app for the `MediaItem` table. The column mappi
 ## Testing
 
 ```powershell
-dotnet test MindAttic.Media.slnx
+dotnet test MindAttic.Storage.slnx
 ```
 
 The NUnit suite covers the local disk store, blob naming, the spill stream and the `/_media` endpoint, using the EF Core in-memory provider. The Azure integration tests run against the Azurite emulator and are skipped when it is not listening:
@@ -123,9 +123,9 @@ npx azurite --silent --location ./azurite --blobHost 127.0.0.1 --blobPort 10000
 
 | Path | What it is |
 |---|---|
-| `src/MindAttic.Media` | `IMediaStore`, `IMediaUrlSigner`, `MediaItem` and its EF configuration, `LocalDiskMediaStore`, `ThresholdSpillStream`, the endpoint and DI extensions |
-| `src/MindAttic.Media.Azure` | `AzureBlobMediaStore`, `AzureBlobUrlSigner`, container factory, naming, options and DI extensions |
-| `src/MindAttic.Media.Tests` | NUnit tests, including the Azurite integration tests |
+| `src/MindAttic.Storage` | `IMediaStore`, `IMediaUrlSigner`, `MediaItem` and its EF configuration, `LocalDiskMediaStore`, `ThresholdSpillStream`, the endpoint and DI extensions |
+| `src/MindAttic.Storage.Azure` | `AzureBlobMediaStore`, `AzureBlobUrlSigner`, container factory, naming, options and DI extensions |
+| `src/MindAttic.Storage.Tests` | NUnit tests, including the Azurite integration tests |
 
 ## Limitations
 
